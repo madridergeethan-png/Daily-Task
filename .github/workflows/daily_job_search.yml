@@ -1,0 +1,17 @@
+name: Daily Data Analyst Job Search
+
+on:
+  schedule:
+    - cron: '30 3 * * *'  # 9:00 AM IST
+  workflow_dispatch:
+
+jobs:
+  search:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - run: pip install -r requirements.txt
+      - run: python search_jobs.py
